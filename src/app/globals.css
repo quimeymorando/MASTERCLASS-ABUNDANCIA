@@ -1,26 +1,115 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Celestial & Earth Palette */
+  --celestial-deep: #09172E;
+  /* Deep Blue Space */
+  --celestial-light: #4A90E2;
+  /* Starry Blue Highlights */
+
+  --earth-cream: #FDFBF7;
+  /* Soft Cream */
+  --earth-sand: #E6E2D3;
+  /* Sand/Beige */
+  --earth-clay: #C4A484;
+  /* Soft Earth/Gold tone */
+
+  --foreground-dark: #1A1A1A;
+  /* Text on light backgrounds */
+  --foreground-light: #EDEDED;
+  /* Text on dark backgrounds */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-celestial-deep: var(--celestial-deep);
+  --color-celestial-light: var(--celestial-light);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-earth-cream: var(--earth-cream);
+  --color-earth-sand: var(--earth-sand);
+  --color-earth-clay: var(--earth-clay);
+
+  --color-foreground-dark: var(--foreground-dark);
+  --color-foreground-light: var(--foreground-light);
+
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
+
+/* Custom Scrollbar for Luxury feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* iOS Optimizations */
+
+
+html,
+body {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* iOS/Mac Animation Fixes */
+.gpu-accelerated {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* --- ANTIGRAVITY IOS STABILITY PATCH START --- */
+
+/* Previene el rebote de scroll que rompe la ilusión de app nativa en GHL */
+/* Previene el rebote de scroll que rompe la ilusión de app nativa en GHL */
+html,
+body {
+  /* Native smooth scrolling */
+  overflow-x: hidden;
+  background-color: #050505;
+}
+
+/* Hack maestro para evitar flickering en WebKit - SIMPLIFIED */
+.ios-stabilize,
+.fix-ios-flicker,
+[data-aos],
+.modal,
+.drawer {
+  /* Using generic transform instead of 3d to avoid aggressive layer creation that blocks scroll */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Removed perspective to reduce complexity */
+}
+
+/* Corrección para imágenes que parpadean al redimensionar */
+img {
+  -webkit-transform: translateZ(0);
+}
+
+/* --- ANTIGRAVITY IOS STABILITY PATCH END --- */
