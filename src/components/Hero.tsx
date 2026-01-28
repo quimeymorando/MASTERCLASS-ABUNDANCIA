@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
+import { StarBackground } from "@/components/effects/StarBackground";
 
 interface HeroProps {
     onOpenModal: () => void;
@@ -15,6 +16,7 @@ export const Hero = ({ onOpenModal }: HeroProps) => {
 
             {/* --- Celestial Background Effects --- */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#050A14] via-[#09172E] to-[#122442] -z-20" />
+            <StarBackground />
 
 
             {/* Content Container */}

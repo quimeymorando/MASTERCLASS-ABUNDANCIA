@@ -9,6 +9,8 @@ import { Footer } from "@/components/Footer";
 import { Testimonials } from "@/components/Testimonials";
 import { OfferStack } from "@/components/OfferStack";
 import { Modal } from "@/components/ui/Modal";
+import { StarBackground } from "@/components/effects/StarBackground";
+import { SmokeEffect } from "@/components/effects/SmokeEffect";
 
 export default function Home() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,7 +18,9 @@ export default function Home() {
     const openModal = () => setIsModalOpen(true);
 
     return (
-        <main className="min-h-screen bg-earth-cream text-foreground-dark selection:bg-earth-clay selection:text-white scroll-smooth">
+        <main className="min-h-screen bg-earth-cream text-foreground-dark selection:bg-earth-clay selection:text-white scroll-smooth relative">
+            <StarBackground />
+            <SmokeEffect />
             <Hero onOpenModal={openModal} />
             <Testimonials />
             <Benefits />

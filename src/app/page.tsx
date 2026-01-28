@@ -2,12 +2,15 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { StarBackground } from "@/components/effects/StarBackground";
+import { SmokeEffect } from "@/components/effects/SmokeEffect";
 
 export default function Hub() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-[#050505] text-white p-4 relative overflow-hidden">
       {/* Background Effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#050A14] via-[#09172E] to-[#122442] -z-20 opacity-50" />
+      <StarBackground />
+      <SmokeEffect />
 
       <div className="z-10 text-center flex flex-col items-center gap-8">
         <h1 className="font-serif text-4xl md:text-6xl tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-[#4A90E2] font-light">

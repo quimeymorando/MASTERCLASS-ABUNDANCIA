@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/Card";
 
 export const Bio = () => {
     return (
-        <section className="py-24 px-4 bg-earth-sand text-foreground-dark relative overflow-hidden">
+        <section className="py-24 px-4 bg-white text-foreground-dark relative overflow-hidden">
             <div className="container max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12">
 
                 {/* Image Placeholder / Avatar */}

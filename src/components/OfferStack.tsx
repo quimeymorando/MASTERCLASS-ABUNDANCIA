@@ -14,7 +14,7 @@ const stackItems = [
 
 export const OfferStack = ({ onOpenModal }: { onOpenModal: () => void }) => {
     return (
-        <section className="py-24 px-4 bg-earth-sand overflow-hidden relative">
+        <section className="py-24 px-4 bg-gradient-to-b from-earth-cream to-blue-50 overflow-hidden relative">
             {/* Background Texture */}
             <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(#C4A484_1px,transparent_1px)] [background-size:20px_20px]" />
 
