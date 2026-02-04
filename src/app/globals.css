@@ -98,32 +98,46 @@ body {
   will-change: transform, opacity;
 }
 
+/* iOS/Mac Animation Fixes - WebKit Exorcist Upgrade */
+.gpu-accelerated, .ios-stabilize, main, section, [data-motion="true"] {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  -webkit-overflow-scrolling: touch;
+  isolation: isolate; /* Aislamiento de capa para filtros de fondo */
+  will-change: transform, opacity;
+}
+
 /* --- ANTIGRAVITY IOS STABILITY PATCH START --- */
 
 /* Previene el rebote de scroll que rompe la ilusión de app nativa en GHL */
-/* Previene el rebote de scroll que rompe la ilusión de app nativa en GHL */
 html,
 body {
-  /* Native smooth scrolling */
   overflow-x: hidden;
-  background-color: #050505;
+  background-color: #050A14; /* Azul espacial profundo, no negro puro */
+  height: 100%;
+  width: 100%;
 }
 
-/* Hack maestro para evitar flickering en WebKit - SIMPLIFIED */
-.ios-stabilize,
-.fix-ios-flicker,
-[data-aos],
-.modal,
-.drawer {
-  /* Using generic transform instead of 3d to avoid aggressive layer creation that blocks scroll */
-  -webkit-transform: translateZ(0);
+/* Forzar modo pantalla completa real para evitar márgenes de GHL */
+#app-root, #main-content, .ghl-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+  width: 100vw !important;
+}
+
+/* Fix para parpadeo de imágenes y capas con blur */
+.glass-effect {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  isolation: isolate;
   transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  /* Removed perspective to reduce complexity */
 }
 
-/* Corrección para imágenes que parpadean al redimensionar */
 img {
   -webkit-transform: translateZ(0);
 }

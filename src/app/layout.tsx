@@ -28,10 +28,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
+      <head>
+        <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
+      </head>
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased bg-[#050505] text-[#EDEDED]`}
+        className={`${inter.variable} ${playfair.variable} antialiased bg-[#050A14] text-[#EDEDED] overflow-x-hidden`}
       >
-        <SmoothScroll>{children}</SmoothScroll>
+        <div id="app-root" className="min-h-screen w-full relative">
+          <SmoothScroll>{children}</SmoothScroll>
+        </div>
       </body>
     </html>
   );
