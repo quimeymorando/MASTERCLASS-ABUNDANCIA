@@ -27,19 +27,7 @@ const testimonials = [
 
 export const Testimonials = () => {
     return (
-        <section className="py-24 px-4 bg-celestial-deep relative overflow-hidden">
-            {/* Stars Background */}
-            <div className="absolute inset-0 opacity-20 pointer-events-none">
-                <style jsx>{`
-                    .stars-sm {
-                        background-image: radial-gradient(1px 1px at 10px 10px, #ffffff, rgba(0,0,0,0));
-                        background-size: 50px 50px;
-                        width: 100%; height: 100%;
-                    }
-                `}</style>
-                <div className="stars-sm" />
-            </div>
-
+        <section className="py-24 px-4 bg-gradient-to-b from-[#0A1A35] to-[#050A14] relative overflow-hidden">
             <div className="container max-w-6xl mx-auto relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

@@ -1,43 +1,31 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
-import Script from "next/script";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  title: "Tierra Dorada | Hub",
-  description: "Portal oficial de Tierra Dorada",
+    title: "Masterclass Abundancia | Tierra Dorada",
+    description: "Activa el estado interno donde TODO lo que deseas ya está disponible.",
+    formatDetection: {
+        telephone: false,
+        date: false,
+        email: false,
+        address: false,
+    },
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="es" className="scroll-smooth">
-      <head>
-        <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
-      </head>
-      <body
-        className={`${inter.variable} ${playfair.variable} antialiased bg-[#050A14] text-[#EDEDED] overflow-x-hidden`}
-      >
-        <div id="app-root" className="min-h-screen w-full relative">
-          <SmoothScroll>{children}</SmoothScroll>
-        </div>
-      </body>
-    </html>
-  );
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return (
+        <html lang="es">
+            <body className={`${inter.variable} ${outfit.variable} font-sans antialiased overflow-x-hidden`}>
+                {children}
+            </body>
+        </html>
+    );
 }

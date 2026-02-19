@@ -15,7 +15,7 @@ export const Hero = ({ onOpenModal }: HeroProps) => {
         <section className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden bg-celestial-deep text-white py-20 lg:py-0 transition-transform duration-300">
 
             {/* --- Celestial Background Effects --- */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#050A14] via-[#09172E] to-[#122442] -z-20" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#050A14] via-[#09172E] to-[#0A1A35] -z-20" />
             <StarBackground />
 
 

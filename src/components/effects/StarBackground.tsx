@@ -7,8 +7,10 @@ interface Star {
     y: number;
     size: number;
     opacity: number;
+    baseOpacity: number;
     speed: number;
     color: string;
+    phase: number;
 }
 
 interface ShootingStar {
@@ -42,17 +44,21 @@ export const StarBackground = () => {
 
         const initStars = () => {
             stars = [];
-            const starCount = 400;
-            const colors = ["#FFFFFF", "#E6E2D3", "#4A90E2"]; // Blanco, Arena, Celeste
+            const starCount = 90; // Minimalist: Menos de 100 estrellas
+            // Paleta muy sutil: Blancos rotos y dorados pálidos
+            const colors = ["#FFFFFF", "#FDFBF7", "#E6E2D3"];
 
             for (let i = 0; i < starCount; i++) {
+                const baseOpacity = Math.random() * 0.4 + 0.1; // Opacidad base muy baja
                 stars.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    size: Math.random() * 1.5 + 0.5,
-                    opacity: Math.random(),
-                    speed: Math.random() * 0.05 + 0.01,
+                    size: Math.random() * 1.0 + 0.1, // Puntos muy finos
+                    opacity: baseOpacity,
+                    baseOpacity: baseOpacity,
+                    speed: Math.random() * 0.005 + 0.002, // Twinkle ULTRA lento
                     color: colors[Math.floor(Math.random() * colors.length)],
+                    phase: Math.random() * Math.PI * 2
                 });
             }
         };
@@ -60,43 +66,45 @@ export const StarBackground = () => {
         const createShootingStar = () => {
             shootingStars.push({
                 x: Math.random() * canvas.width,
-                y: Math.random() * (canvas.height / 2),
-                length: Math.random() * 80 + 20,
-                speed: Math.random() * 10 + 5,
-                opacity: 1,
-                width: Math.random() * 2 + 1,
+                y: Math.random() * (canvas.height / 3),
+                length: Math.random() * 60 + 10, // Colas más cortas y elegantes
+                speed: Math.random() * 5 + 3, // Velocidad moderada
+                opacity: 0.8,
+                width: Math.random() * 1.5 + 0.5,
             });
         };
 
         const draw = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw Stars (Pulsating)
+            // Draw Stars
             stars.forEach((star) => {
-                star.opacity += star.speed;
-                if (star.opacity > 1 || star.opacity < 0) {
-                    star.speed = -star.speed;
-                }
+                // Animación de pulso suave
+                star.phase += star.speed;
+                const pulse = Math.sin(star.phase);
+                // La opacidad oscila suavemente alrededor de su base
+                const currentOpacity = star.baseOpacity + (pulse * 0.15);
+                const finalOpacity = Math.max(0, Math.min(1, currentOpacity));
 
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${hexToRgb(star.color)}, ${star.opacity})`;
+                ctx.fillStyle = `rgba(${hexToRgb(star.color)}, ${finalOpacity})`;
                 ctx.fill();
 
-                // Subtle glow for brighter stars
-                if (star.opacity > 0.8) {
+                // Glow solo para las más brillantes y grandes
+                if (finalOpacity > 0.4 && star.size > 0.8) {
                     ctx.shadowBlur = 4;
-                    ctx.shadowColor = star.color;
+                    ctx.shadowColor = "rgba(255, 255, 255, 0.3)";
                     ctx.fill();
                     ctx.shadowBlur = 0;
                 }
             });
 
-            // Draw Shooting Stars (with trails)
+            // Draw Shooting Stars
             shootingStars.forEach((ss, index) => {
                 ss.x -= ss.speed;
-                ss.y += ss.speed * 0.5;
-                ss.opacity -= 0.02;
+                ss.y += ss.speed * 0.3; // Ángulo más suave
+                ss.opacity -= 0.01;
 
                 if (ss.opacity <= 0) {
                     shootingStars.splice(index, 1);
@@ -105,7 +113,7 @@ export const StarBackground = () => {
 
                 const gradient = ctx.createLinearGradient(
                     ss.x, ss.y,
-                    ss.x + ss.length, ss.y - ss.length * 0.5
+                    ss.x + ss.length, ss.y - ss.length * 0.3
                 );
                 gradient.addColorStop(0, `rgba(255, 255, 255, ${ss.opacity})`);
                 gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
@@ -115,20 +123,12 @@ export const StarBackground = () => {
                 ctx.lineWidth = ss.width;
                 ctx.lineCap = "round";
                 ctx.moveTo(ss.x, ss.y);
-                ctx.lineTo(ss.x + ss.length, ss.y - ss.length * 0.5);
+                ctx.lineTo(ss.x + ss.length, ss.y - ss.length * 0.3);
                 ctx.stroke();
-
-                // Glow head
-                ctx.beginPath();
-                ctx.arc(ss.x, ss.y, ss.width * 1.5, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${ss.opacity})`;
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = "white";
-                ctx.fill();
-                ctx.shadowBlur = 0;
             });
 
-            if (Math.random() < 0.015) {
+            // Probabilidad muy baja para estrellas fugaces (eventos raros)
+            if (Math.random() < 0.003) {
                 createShootingStar();
             }
 
@@ -155,7 +155,7 @@ export const StarBackground = () => {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 pointer-events-none z-0 bg-transparent"
+            className="fixed inset-0 pointer-events-none z-0"
             style={{ mixBlendMode: 'screen' }}
         />
     );

@@ -26,17 +26,17 @@ const faqs = [
 
 export const FAQ = () => {
     return (
-        <section className="py-24 px-4 bg-earth-cream/50 relative overflow-hidden">
-            {/* Decorative Elements */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/30 rounded-full blur-[100px] -z-10" />
+        <section className="py-24 px-4 bg-celestial-deep relative overflow-hidden">
+            {/* Celestial Decorative Elements */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px] -z-10" />
             <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-gold-primary/5 rounded-full blur-[80px] -z-10" />
 
-            <div className="container max-w-3xl mx-auto">
+            <div className="container max-w-3xl mx-auto relative z-10">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="font-serif text-3xl md:text-5xl text-earth-clay mb-12 text-center"
+                    className="font-serif text-3xl md:text-5xl text-earth-sand mb-12 text-center"
                 >
                     Preguntas Frecuentes
                 </motion.h2>
@@ -61,23 +61,23 @@ const FAQItem = ({ question, answer, index }: { question: string, answer: string
             transition={{ delay: index * 0.1 }}
             viewport={{ once: true }}
             className={cn(
-                "border border-earth-clay/10 rounded-xl overflow-hidden bg-white shadow-sm transition-all duration-300",
-                isOpen && "shadow-md ring-1 ring-earth-clay/20"
+                "border border-white/10 rounded-xl overflow-hidden bg-white/5 shadow-sm transition-all duration-300 backdrop-blur-sm",
+                isOpen && "shadow-md ring-1 ring-earth-sand/30 bg-white/10"
             )}
         >
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center justify-between w-full p-6 text-left group bg-white hover:bg-gray-50/50 transition-colors"
+                className="flex items-center justify-between w-full p-6 text-left group hover:bg-white/5 transition-colors"
             >
                 <span className={cn(
                     "text-lg font-medium transition-colors duration-300",
-                    isOpen ? "text-earth-clay" : "text-foreground-dark group-hover:text-earth-clay/80"
+                    isOpen ? "text-earth-sand" : "text-blue-100 group-hover:text-earth-sand/80"
                 )}>
                     {question}
                 </span>
                 <span className={cn(
                     "p-2 rounded-full transition-all duration-300",
-                    isOpen ? "bg-earth-clay text-white rotate-180" : "bg-earth-sand/50 text-earth-clay group-hover:bg-earth-clay/10"
+                    isOpen ? "bg-earth-clay text-white rotate-180" : "bg-white/5 text-earth-sand group-hover:bg-earth-clay/20"
                 )}>
                     {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                 </span>
@@ -91,7 +91,7 @@ const FAQItem = ({ question, answer, index }: { question: string, answer: string
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                         className="overflow-hidden"
                     >
-                        <div className="p-6 pt-0 text-foreground-dark/70 leading-relaxed bg-white/50 border-t border-dashed border-earth-clay/10">
+                        <div className="p-6 pt-0 text-blue-100/70 leading-relaxed border-t border-dashed border-white/10">
                             {answer}
                         </div>
                     </motion.div>

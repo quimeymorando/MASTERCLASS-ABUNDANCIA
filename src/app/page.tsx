@@ -1,34 +1,54 @@
 "use client";
 
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { StarBackground } from "@/components/effects/StarBackground";
-import { SmokeEffect } from "@/components/effects/SmokeEffect";
+import { useState } from "react";
+import { Hero } from "@/components/Hero";
+import { Benefits } from "@/components/Benefits";
+import { Bio } from "@/components/Bio";
+import { FAQ } from "@/components/FAQ";
+import { Footer } from "@/components/Footer";
+import { Testimonials } from "@/components/Testimonials";
+import { OfferStack } from "@/components/OfferStack";
+import { Modal } from "@/components/ui/Modal";
 
-export default function Hub() {
-  return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-[#050505] text-white p-4 relative overflow-hidden">
-      {/* Background Effect */}
-      <StarBackground />
-      <SmokeEffect />
+export default function Home() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-      <div className="z-10 text-center flex flex-col items-center gap-8">
-        <h1 className="font-serif text-4xl md:text-6xl tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-[#4A90E2] font-light">
-          TIERRA DORADA
-        </h1>
+    const openModal = () => setIsModalOpen(true);
 
-        <div className="h-px w-24 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+    return (
+        <main className="min-h-screen bg-transparent text-foreground-dark selection:bg-earth-clay selection:text-white scroll-smooth relative">
+            <Hero onOpenModal={openModal} />
+            <Testimonials />
+            <Benefits />
+            <Bio />
+            <OfferStack onOpenModal={openModal} />
+            <FAQ />
+            <Footer />
 
-        <Link href="/asume-tu-abundancia">
-          <Button
-            variant="celestial"
-            size="lg"
-            className="text-lg px-10 py-8 min-w-[280px] hover:scale-105 transition-transform duration-300 shadow-[0_0_40px_-10px_rgba(74,144,226,0.3)]"
-          >
-            Masterclass: Asume tu Abundancia
-          </Button>
-        </Link>
-      </div>
-    </main>
-  );
+            {/* Global Modal */}
+            {isModalOpen && (
+                <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                    <div className="w-full h-[510px] bg-white overflow-hidden">
+                        <iframe
+                            src="https://api.leadconnectorhq.com/widget/form/4eAISHRayV6UvKBXc0hm?notrack=true"
+                            style={{ width: '100%', height: '100%', border: 'none', borderRadius: '4px' }}
+                            id="inline-4eAISHRayV6UvKBXc0hm"
+                            data-layout="{'id':'INLINE'}"
+                            data-trigger-type="alwaysShow"
+                            data-trigger-value=""
+                            data-activation-type="alwaysActivated"
+                            data-activation-value=""
+                            data-deactivation-type="neverDeactivate"
+                            data-deactivation-value=""
+                            data-form-name="Formulario Masterclass Abundancia"
+                            data-height="545"
+                            data-layout-iframe-id="inline-4eAISHRayV6UvKBXc0hm"
+                            data-form-id="4eAISHRayV6UvKBXc0hm"
+                            title="Formulario Masterclass Abundancia"
+                        ></iframe>
+                    </div>
+                </Modal>
+            )}
+        </main>
+    );
 }

@@ -39,7 +39,7 @@ const benefits = [
 
 export const Benefits = () => {
     return (
-        <section className="py-24 px-4 bg-earth-cream relative overflow-hidden text-foreground-dark">
+        <section className="py-24 px-4 bg-earth-cream relative z-10 overflow-hidden text-foreground-dark">
 
             {/* Organic/Earth Background Blob */}
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-earth-sand/30 blur-[80px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/4" />
@@ -53,7 +53,7 @@ export const Benefits = () => {
                     className="text-center mb-16"
                 >
                     <h2 className="font-serif text-3xl md:text-5xl text-earth-clay mb-4">Lo Que Vas a Descubrir</h2>
-                    <p className="text-foreground-dark/70 max-w-2xl mx-auto text-lg">
+                    <p className="text-foreground-dark/80 max-w-2xl mx-auto text-lg">
                         Una inmersión profunda en las claves que transformarán tu realidad financiera y espiritual.
                     </p>
                 </motion.div>

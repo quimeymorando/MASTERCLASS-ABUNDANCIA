@@ -33,17 +33,19 @@
 
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
-  
+
   --animate-meteor: meteor 5s linear infinite;
-  
+
   @keyframes meteor {
     0% {
       transform: rotate(215deg) translateX(0);
       opacity: 1;
     }
+
     70% {
       opacity: 1;
     }
+
     100% {
       transform: rotate(215deg) translateX(-500px);
       opacity: 0;
@@ -80,8 +82,8 @@ body {
 
 html,
 body {
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  height: auto;
+  min-height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -98,32 +100,35 @@ body {
   will-change: transform, opacity;
 }
 
-/* iOS/Mac Animation Fixes - WebKit Exorcist Upgrade */
-.gpu-accelerated, .ios-stabilize, main, section, [data-motion="true"] {
+/* iOS/Mac Animation Fixes - Lightweight Version */
+.gpu-accelerated {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-perspective: 1000;
   perspective: 1000;
-  -webkit-overflow-scrolling: touch;
-  isolation: isolate; /* Aislamiento de capa para filtros de fondo */
-  will-change: transform, opacity;
 }
 
 /* --- ANTIGRAVITY IOS STABILITY PATCH START --- */
 
-/* Previene el rebote de scroll que rompe la ilusión de app nativa en GHL */
-html,
+html {
+  overflow-x: hidden;
+  /* Native smooth scroll REMOVED to avoid conflict with Lenis */
+  overscroll-behavior-y: none;
+  /* Prevents elastic bounce effect */
+}
+
 body {
   overflow-x: hidden;
-  background-color: #050A14; /* Azul espacial profundo, no negro puro */
-  height: 100%;
-  width: 100%;
+  background-color: #050A14;
+  min-height: 100%;
 }
 
 /* Forzar modo pantalla completa real para evitar márgenes de GHL */
-#app-root, #main-content, .ghl-container {
+#app-root,
+#main-content,
+.ghl-container {
   margin: 0 !important;
   padding: 0 !important;
   max-width: 100% !important;
@@ -134,7 +139,6 @@ body {
 .glass-effect {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  isolation: isolate;
   transform: translateZ(0);
 }
 
