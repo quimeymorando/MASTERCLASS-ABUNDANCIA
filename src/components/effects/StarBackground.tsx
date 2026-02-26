@@ -34,7 +34,7 @@ export const StarBackground = () => {
 
         let animationFrameId: number;
         let stars: Star[] = [];
-        let shootingStars: ShootingStar[] = [];
+        const shootingStars: ShootingStar[] = [];
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;

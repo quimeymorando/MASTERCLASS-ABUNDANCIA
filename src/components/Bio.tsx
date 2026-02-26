@@ -20,9 +20,9 @@ export const Bio = () => {
                 >
                     <div className="aspect-[3/4] rounded-2xl bg-white/5 border border-white/10 relative overflow-hidden backdrop-blur-sm">
                         {/* Replace with actual image if available, or use a stylized placeholder */}
-                        <img 
-                            src="https://assets.cdn.filesafe.space/uuaiNCJCRvymWQ2ejuex/media/698b6cc38682155edc61e55e.png" 
-                            alt="Joaquín Altermann" 
+                        <img
+                            src="https://assets.cdn.filesafe.space/uuaiNCJCRvymWQ2ejuex/media/698b6cc38682155edc61e55e.png"
+                            alt="Joaquín Altermann"
                             className="w-full h-full object-cover"
                         />
                     </div>
@@ -53,7 +53,7 @@ export const Bio = () => {
                             Fundador de <strong>Tierra Dorada</strong>, su misión es elevar la frecuencia del planeta ayudando a líderes y buscadores a manifestar una vida de coherencia, abundancia y propósito.
                         </p>
                         <Card variant="solid" className="bg-white/5 border-white/10 italic text-earth-sand">
-                            "La abundancia no es algo que consigues. Es algo con lo que sintonizas."
+                            &quot;La abundancia no es algo que consigues. Es algo con lo que sintonizas.&quot;
                         </Card>
                     </motion.div>
                 </div>
