@@ -84,7 +84,7 @@ export const Hero = ({ onOpenModal }: HeroProps) => {
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="flex-1 w-full max-w-xl lg:max-w-full flex flex-col gap-8"
                 >
-                    <VideoPlayer videoId="HtGqclEnEcs" />
+                    <VideoPlayer videoId="https://assets.cdn.filesafe.space/uuaiNCJCRvymWQ2ejuex/media/69ac30ceb2a2744f06e87d71.mp4" />
 
                     {/* Mobile Button Location (Appears after video) */}
                     <motion.div

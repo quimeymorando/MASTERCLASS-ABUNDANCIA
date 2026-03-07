@@ -4,7 +4,7 @@
 type AppRoutes = "/" | "/asume-tu-abundancia"
 type PageRoutes = never
 type LayoutRoutes = "/" | "/asume-tu-abundancia"
-type RedirectRoutes = never
+type RedirectRoutes = "/"
 type RewriteRoutes = never
 type Routes = AppRoutes | PageRoutes | LayoutRoutes | RedirectRoutes | RewriteRoutes
 
